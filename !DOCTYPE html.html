@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Date Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffe6e6;
+            color: #d63384;
+            padding: 50px;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            color: #ff3366;
+            animation: bounce 1.5s infinite;
+        }
+        .heart {
+            font-size: 50px;
+            animation: heartbeat 1.5s infinite;
+        }
+        .btn {
+            background-color: #ff3366;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .btn:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #ff3366;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        @keyframes floatingHearts {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+        }
+        .floating-heart {
+            position: absolute;
+            color: #ff3366;
+            font-size: 30px;
+            opacity: 0;
+            animation: floatingHearts 5s linear infinite;
+        }
+    </style>
+    <script>
+        function showMessage(option) {
+            let message = "";
+            if (option === 'dinner') {
+                message = "A romantic dinner with you, Moniyanit, is all I need! ❤️";
+            } else if (option === 'movie') {
+                message = "Watching a movie together with you, Moniyanit, will make my day perfect! 🎬";
+            } else if (option === 'hug') {
+                message = "A warm hug from you, Moniyanit, is the best gift ever! 🤗";
+            }
+            let messageElement = document.getElementById("message");
+            messageElement.innerText = message;
+            messageElement.style.opacity = "1";
+        }
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("floating-heart");
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+                setTimeout(() => { heart.remove(); }, 5000);
+            }
+        }
+        setInterval(createHearts, 1000);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Will You Be My Valentine, Moniyanit? ❤️</h1>
+        <p>Moniyanit, I've planned something special just for us!</p>
+        <p class="heart">💖 💕 💞</p>
+        <button class="btn" onclick="showMessage('dinner')">Dinner 🍽️</button>
+        <button class="btn" onclick="showMessage('movie')">Movie 🎬</button>
+        <button class="btn" onclick="showMessage('hug')">Hug 🤗</button>
+        <p id="message"></p>
+    </div>
+</body>
+</html>
